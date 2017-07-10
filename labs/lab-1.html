@@ -14,14 +14,49 @@
 			и добавьте его в <span> вместо строки "какой-то курс"
 			(третий <p> в <div id="news">)
 	*/
-	/** ЗАДАНИЕ 2
-		- В таблице с id="courses" выберите коды всех курсов и для каждого курса 
-			- сформируйте строку вида "код.pdf", например "xml.pdf"
-			- добавьте как href элемента <a> с классом "doc"
-			- анкор "ссылка" поменяйте на "описание"
-			Например, у курса с кодом "XML" ссылка должна выглядеть как:
-			<a class="doc" href="xml.pdf">описание</a>	
-	*/
+
+	$(function(){
+    /*
+    Var 1  http://jquery.page2page.ru/index.php5/%D0%9D%D0%B5%D1%87%D0%B5%D1%82%D0%BD%D1%8B%D0%B5_%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B
+       $("table tbody tr:odd").css("background","white");
+     */
+
+    /*
+    Var 2
+    */
+	   $("table tbody tr:even").css("background-color","withe");
+        var txt = $("table#courses tbody td:contains('AJAX')")
+                    .eq(1).text();
+        txt = txt.slice(0, txt.indexOf(" ("));
+        //console.log(txt);
+        var p =$("div#content div#news p").not(":has(span.hiden)");
+        p.children("span").text(txt);
+    });
+
+
+    /** ЗАДАНИЕ 2
+     - В таблице с id="courses" выберите коды всех курсов и для каждого курса
+     - сформируйте строку вида "код.pdf", например "xml.pdf"
+     - добавьте как href элемента <a> с классом "doc"
+     - анкор "ссылка" поменяйте на "описание"
+     Например, у курса с кодом "XML" ссылка должна выглядеть как:
+     <a class="doc" href="xml.pdf">описание</a>
+     */
+
+
+    $(function(){
+
+        $('#courses tbody tr').each(function(){
+            txt = $(this).children('td').eq(0).text();
+            console.log(txt);
+            txt1 = txt + '.pdf';
+            console.log(txt1);
+            $(this).find('a.doc').text('описание').attr('href',txt1);
+        });
+    })
+
+
+
 	</script>
 	
 </head>
